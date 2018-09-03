@@ -1,4 +1,4 @@
-
+import binascii
 
 # Set 1 - 1
 def hex_to_base64(str):
@@ -8,7 +8,8 @@ def hex_to_base64(str):
 def xor_byte_strings(input_bytes_1, input_bytes_2):
 	return ''.join([chr(a ^ b) for a,b in zip(input_bytes_1,input_bytes_2)])
 
-# input1 = bytearray.fromhex('1c0111001f010100061a024b53535009181c')
-# input2 = bytearray.fromhex('686974207468652062756c6c277320657965')
-# print (xor_byte_strings(input1,input2)).encode('hex')
-
+# Set 1- 3
+def xor_single_byte(str):
+	nums = binascii.unhexlify(str)
+	result = (''.join(chr(ord(num) ^ key) for num in nums) for key in range(256))
+	print max(result, key=lambda s: s.count(' '))
